@@ -1,12 +1,14 @@
 const express = require("express");
 const cors = require("cors");
 const dogsRouter = require("./routes/dogsRouter");
+const pingRouter = require("./routes/pingRouter");
 
 const app = express();
 app.use(cors());
 app.use(express.json());
 
 app.use("/dogs", dogsRouter);
+app.use("/ping", pingRouter);
 
 app.use((req, res) => {
   res.status(404).json({ message: "Illegal path" });
