@@ -1,4 +1,4 @@
-const Dog = require("../models/dogs");
+const { Dog } = require("../models/dogs");
 
 const getDogsController = async (req, res, next) => {
   const { pageNumber, limit, attribute, order } = req.query;
