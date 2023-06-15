@@ -33,12 +33,22 @@ const schemaAddDog = Joi.object({
   weight: Joi.number().positive().required(),
 });
 
-const addDogValidation = (req, res, next) => {
-  const { error } = schemaAddDog.validate(req.body);
-  if (error) {
-    next(new ValidationError(error.details));
-  }
-  next();
-};
+const schemaDogQuery = Joi.object({
+  limit: Joi.number()
+    .min(1)
+    .max(20)
+    .messages({
+      "number.min": `"limit" must be equal or greater than {#limit}. You provided: {limit}`,
+    })
+    .optional(),
+  pageNumber: Joi.number()
+    .min(1)
+    .messages({
+      "number.min": `"page" must be equal or greater than {#limit}. You provided: {page}`,
+    })
+    .optional(),
+  attribute: Joi.string().optional(),
+  order: Joi.string().optional(),
+});
 
-module.exports = { Dog, addDogValidation };
+module.exports = { Dog, schemaAddDog, schemaDogQuery };

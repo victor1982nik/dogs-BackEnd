@@ -1,6 +1,6 @@
 const { Dog } = require("../models/dogs");
 
-const getDogsController = async (req, res, next) => {
+const getDogsCtrl = async (req, res, next) => {
   const { pageNumber, limit, attribute, order } = req.query;
   const filters = {};
 
@@ -16,4 +16,4 @@ const getDogsController = async (req, res, next) => {
   res.json(dogs);
 };
 
-module.exports = getDogsController;
+module.exports = getDogsCtrl;
